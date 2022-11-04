@@ -1,0 +1,81 @@
+<meta charset="UTF-8">
+
+<script>
+    function pulaLinha() {
+
+        document.write("<br>"); 
+    }
+
+    function mostra(frase) {
+
+        document.write(frase);
+        pulaLinha();
+    }
+
+    var quantNumeros = parseInt(prompt("Informe quantos números quer sortear:"));
+
+    while(isNaN(quantNumeros)) {
+        
+        quantNumeros = parseInt(prompt("Você inseriu um texto. Por favor, informe quantos números quer sortear:"));
+    }
+
+    while (quantNumeros <= 0) {
+        
+        quantNumeros = parseInt(prompt("Desculpe, a quantidade tem que ser maior do que zero. Por favor, informe quantos números quer sortear:"));
+    }
+
+    var limiteNumeros = parseInt(prompt("Você quer que os números sorteados estejam entre 1 e quanto?"));
+
+    while (isNaN(limiteNumeros)) {
+        
+        limiteNumeros = parseInt(prompt("Você inseriu um texto. Por favor, informe quantos números quer sortear:"));
+    }
+
+    while (limiteNumeros <= 0) {
+        
+        limiteNumeros = parseInt(prompt("Desculpe, a quantidade tem que ser maior do que zero. Por favor, informe quantos números quer sortear:"));
+    }
+
+    function sorteia() {
+
+        return Math.round(Math.random() * limiteNumeros);
+    } 
+
+    function sorteiaNumeros(quantidade) {
+        
+        var sorteados = [];
+        
+        var numero = 1;
+
+        while(numero<=quantidade) { 
+
+            var numeroAleatorio = sorteia ();
+
+            if (numeroAleatorio !== 0) {
+                
+                var achou = false;
+
+                for(var posicao = 0; posicao<sorteados.length; posicao++) {
+                    
+                    if(sorteados[posicao]==numeroAleatorio) {
+                        
+                        achou=true;
+                        break;
+                    } 
+                }
+
+                if(achou == false) {
+
+                    sorteados.push(numeroAleatorio);
+                    numero++;
+                }
+            }
+        }
+        return sorteados;
+    }
+
+    var sorteados = sorteiaNumeros (quantNumeros);
+
+    mostra (sorteados);
+
+</script>
